@@ -1,0 +1,22 @@
+ORG 100H
+
+MOV SI, 4500H
+MOV CL, [SI]
+MOV CH, 00H
+
+INC SI
+
+MOV DI, 4600H
+
+NEXT:
+    MOV AL, [SI]
+    MUL AL
+
+    MOV [DI], AX
+
+    INC SI
+    ADD DI, 2
+
+    LOOP NEXT
+
+HLT

@@ -1,0 +1,107 @@
+ORG 1000H
+
+MOV AX, 0000H
+MOV DS, AX
+MOV ES, AX
+
+; --------------------------------
+; A. BLOCK TRANSFER - REP MOVSB
+; --------------------------------
+
+CLD
+MOV SI, 3000H
+MOV DI, 3100H
+MOV CX, 000BH
+REP MOVSB
+
+; Overlapping block move
+STD
+MOV SI, 300AH
+MOV DI, 300DH
+MOV CX, 000BH
+REP MOVSB
+CLD
+
+
+; --------------------------------
+; B. STRING COMPARISON - REPE CMPSB
+; --------------------------------
+
+MOV SI, 3200H
+MOV DI, 3210H
+MOV CX, 0006H
+REPE CMPSB
+
+JNE COMP_DIFF
+
+; Strings are equal
+MOV AL, 00H
+MOV [3220H], AL
+JMP COMP_DONE
+
+COMP_DIFF:
+MOV AX, 0006H
+SUB AX, CX
+MOV [3220H], AL
+
+COMP_DONE:
+
+
+; --------------------------------
+; C. CHARACTER SEARCH - REPNE SCASB
+; --------------------------------
+
+CLD
+MOV DI, 3300H
+MOV CX, 000CH
+MOV AL, 41H
+MOV BL, 00H
+MOV DX, 0000H
+
+SEARCH_AGAIN:
+REPNE SCASB
+JNE SEARCH_DONE
+
+INC BL
+
+CMP DX, 0000H
+JNE SKIP_POSITION
+
+MOV DX, DI
+SUB DX, 3300H
+
+SKIP_POSITION:
+JCXZ SEARCH_DONE
+JMP SEARCH_AGAIN
+
+SEARCH_DONE:
+MOV [3310H], BL
+MOV [3311H], DL
+
+
+; --------------------------------
+; D. LOWERCASE TO UPPERCASE
+; LODSB AND STOSB
+; --------------------------------
+
+CLD
+MOV SI, 3400H
+MOV DI, 3420H
+MOV CX, 000AH
+
+CONVERT_NEXT:
+LODSB
+
+CMP AL, 61H
+JB STORE_CHAR
+
+CMP AL, 7AH
+JA STORE_CHAR
+
+SUB AL, 20H
+
+STORE_CHAR:
+STOSB
+LOOP CONVERT_NEXT
+
+HLT

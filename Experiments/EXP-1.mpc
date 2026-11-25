@@ -98,8 +98,8 @@
 \par 
 \par MVI E 10h
 \par 
-\par \fs20 MULLOOP: LDA 800Ah\fs20 
-\par \fs20 RAR\fs20 
+\par MULLOOP: LDA 800Ah
+\par RAR
 \par STA 800Ah
 \par LDA 800Bh
 \par RAR
@@ -125,7 +125,7 @@
 \par ACI 00h
 \par STA 8007h
 \par 
-\par \fs20 NOADD: LDA 8008h\fs20 
+\par NOADD: LDA 8008h
 \par ADD A
 \par STA 8008h
 \par LDA 8009h
@@ -150,7 +150,7 @@
 \par 
 \par LXI H 0000h
 \par 
-\par \fs20 DIVLOOP: MOV A D\fs20 
+\par DIVLOOP: MOV A D
 \par CMP B
 \par JC DIVDONE
 \par JNZ DIVSUB
@@ -159,7 +159,7 @@
 \par CMP C
 \par JC DIVDONE
 \par  
-\par \fs20 DIVSUB: MOV A E\fs20 
+\par DIVSUB: MOV A E
 \par SUB C
 \par MOV E A
 \par MOV A D
@@ -169,7 +169,7 @@
 \par INX H
 \par JMP DIVLOOP
 \par 
-\par \fs20 DIVDONE: SHLD 9004h\fs20 
+\par DIVDONE: SHLD 9004h
 \par MOV A E
 \par STA 9006h
 \par MOV A D
@@ -209,7 +209,7 @@
 26| 7004| 0A
 27| 7005| 00
 <End UserData>
-1636
+1925
 1| 8000| 3A
 2| 8001| 00
 3| 8002| 20
@@ -519,5 +519,6 @@
 307| 8132| 76
 308| 8133| 76
 <End HexData>
+
 
 <End Comment>

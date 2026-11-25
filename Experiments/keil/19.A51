@@ -1,0 +1,46 @@
+ORG 0000H
+
+START:
+    MOV P1, #00H
+
+RED:
+    MOV P1, #01H
+    ACALL DELAY5S
+
+YELLOW:
+    MOV P1, #02H
+    ACALL DELAY2S
+
+GREEN:
+    MOV P1, #04H
+    ACALL DELAY5S
+
+    SJMP START
+
+DELAY5S:
+    MOV R2, #5
+DLY5:
+    ACALL DELAY1S
+    DJNZ R2, DLY5
+    RET
+
+DELAY2S:
+    MOV R2, #2
+DLY2:
+    ACALL DELAY1S
+    DJNZ R2, DLY2
+    RET
+
+DELAY1S:
+    MOV R3, #20
+D1:
+    MOV R4, #250
+D2:
+    MOV R5, #250
+D3:
+    DJNZ R5, D3
+    DJNZ R4, D2
+    DJNZ R3, D1
+    RET
+
+END

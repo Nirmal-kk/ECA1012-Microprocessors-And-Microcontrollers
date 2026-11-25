@@ -1,0 +1,102 @@
+ORG 1000H
+
+MOV AX, 0000H
+MOV DS, AX
+
+; =================================
+; A. FACTORIAL USING LOOP
+; =================================
+
+MOV CX, [2500H]
+MOV AX, 0001H
+MOV DX, 0000H
+
+JCXZ FACT_STORE
+
+FACT_BACK:
+MUL CX
+LOOP FACT_BACK
+
+FACT_STORE:
+MOV [2502H], AX
+MOV [2504H], DX
+
+
+; =================================
+; B. SQUARE OF ARRAY USING SUBROUTINE
+; =================================
+
+MOV SP, 0FFEH
+
+MOV SI, 2600H
+MOV CL, [SI]
+MOV CH, 00H
+
+INC SI
+
+MOV DI, 2610H
+
+SQUARE_BACK:
+MOV AL, [SI]
+
+CALL SQR
+
+MOV [DI], AX
+
+INC SI
+ADD DI, 02H
+
+LOOP SQUARE_BACK
+
+JMP FIND_MIN_MAX
+
+; ---- SUBROUTINE ----
+
+SQR:
+PUSH BX
+
+MOV BL, AL
+MUL BL
+
+POP BX
+RET
+
+
+; =================================
+; C. LARGEST AND SMALLEST
+; =================================
+
+FIND_MIN_MAX:
+
+MOV SI, 2700H
+MOV CL, [SI]
+MOV CH, 00H
+
+INC SI
+
+MOV AL, [SI]
+MOV BL, AL
+
+DEC CX
+
+NEXT:
+INC SI
+
+CMP AL, [SI]
+JNC NOT_BIG
+
+MOV AL, [SI]
+
+NOT_BIG:
+CMP BL, [SI]
+JC NOT_SMALL
+
+MOV BL, [SI]
+
+NOT_SMALL:
+LOOP NEXT
+
+MOV [2710H], AL
+MOV [2711H], BL
+
+HLT

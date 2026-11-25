@@ -1,0 +1,206 @@
+8000
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\li195\cf1\f0\fs20 LXI H 2050h
+\par MOV A M
+\par INX H
+\par MOV B M
+\par ANA B
+\par STA 2053h
+\par 
+\par LXI H 2050h
+\par MOV A M
+\par INX H
+\par MOV B M
+\par ORA B
+\par STA 2053h
+\par 
+\par LXI H 2050h
+\par MOV A M
+\par INX H
+\par MOV B M
+\par XRA B
+\par STA 2053h
+\par 
+\par LXI H 2050h
+\par MOV A M
+\par CMA
+\par STA 2053h
+\par 
+\par LXI H 2050h
+\par MOV A M
+\par CMA
+\par INR A
+\par STA 2053h
+\par 
+\par LDA 2052h
+\par STC
+\par RAL
+\par STA 2054h
+\par 
+\par LDA 2052h
+\par STC
+\par RAR
+\par STA 2054h
+\par 
+\par LDA 2052h
+\par RLC
+\par STA 2054h
+\par 
+\par LDA 2052h
+\par RRC
+\par STA 2054h
+\par 
+\par LDA 2052h
+\par MOV B A
+\par MVI C 00h
+\par MVI D 08h
+\par 
+\par COUNT : RAR
+\par JNC SKIP
+\par INR C
+\par SKIP : DCR D
+\par JNZ COUNT
+\par MOV A C
+\par STA 2055h
+\par 
+\par LDA 2052h
+\par RLC
+\par RLC
+\par RLC
+\par RLC
+\par STA 2056h
+\par 
+\par LDA 2052h
+\par STC
+\par RAL
+\par MOV A H
+\par STA 2057h
+\par 
+\par LDA 2052h
+\par ORA A
+\par JZ ZERO
+\par MVI A 00h
+\par JMP STORE
+\par ZERO : MVI A 01h
+\par STORE : STA 2058h
+\par 
+\par LDA 2052h
+\par ORA A
+\par JP POSITIVE
+\par MVI A 01h
+\par JMP SIGN
+\par POSITIVE : MVI A 00h
+\par SIGN : STA 2059h
+\par 
+\par LDA 2052h
+\par ORA A
+\par JPE EVEN
+\par MVI A 00h
+\par JMP PARITY
+\par EVEN : MVI A 01h
+\par PARITY : STA 205Ah
+\par 
+\par HLT
+\par }
+<End Codes>
+20
+1| 2050| 00
+2| 2051| 00
+3| 2052| 00
+4| 2053| 00
+5| 2054| 00
+6| 2055| 00
+7| 2056| 00
+8| 2057| 00
+9| 2058| 00
+10| 2059| 00
+11| 205A| 00
+<End UserData>
+84
+1| 8000| 3E
+2| 8001| 04
+3| 8002| 06
+4| 8003| 0F
+5| 8004| A0
+6| 8005| B0
+7| 8006| A8
+8| 8007| 2F
+9| 8008| 3C
+10| 8009| 2F
+11| 800A| C6
+12| 800B| 01
+13| 800C| 3E
+14| 800D| 85
+15| 800E| 37
+16| 800F| 17
+17| 8010| 1F
+18| 8011| 07
+19| 8012| 0F
+20| 8013| 3E
+21| 8014| F0
+22| 8015| 47
+23| 8016| E6
+24| 8017| 01
+25| 8018| 0E
+26| 8019| 00
+27| 801A| 78
+28| 801B| 16
+29| 801C| 08
+30| 801D| 1F
+31| 801E| D2
+32| 801F| 22
+33| 8020| 80
+34| 8021| 0C
+35| 8022| 15
+36| 8023| C2
+37| 8024| 1D
+38| 8025| 80
+39| 8026| 78
+40| 8027| 07
+41| 8028| 07
+42| 8029| 07
+43| 802A| 07
+44| 802B| 3E
+45| 802C| F0
+46| 802D| E6
+47| 802E| 0F
+48| 802F| 3E
+49| 8030| 0F
+50| 8031| F6
+51| 8032| F0
+52| 8033| 3E
+53| 8034| FF
+54| 8035| EE
+55| 8036| 0F
+56| 8037| 2F
+57| 8038| 3E
+58| 8039| 80
+59| 803A| 37
+60| 803B| 17
+61| 803C| 3E
+62| 803D| 01
+63| 803E| 37
+64| 803F| 1F
+65| 8040| 3E
+66| 8041| 7F
+67| 8042| C6
+68| 8043| 01
+69| 8044| 3E
+70| 8045| 00
+71| 8046| D6
+72| 8047| 01
+73| 8048| 3E
+74| 8049| 03
+75| 804A| EE
+76| 804B| 03
+77| 804C| 3E
+78| 804D| FF
+79| 804E| 3C
+80| 804F| 3E
+81| 8050| 01
+82| 8051| 3D
+83| 8052| 76
+<End HexData>
+
+<End Comment>

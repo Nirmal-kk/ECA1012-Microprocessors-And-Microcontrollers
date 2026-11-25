@@ -1,0 +1,28 @@
+ORG 0000H
+
+MOV R0, #30H
+MOV R1, #40H
+MOV R2, #50H
+MOV R3, #04H
+
+CLR C
+
+BACK:
+    MOV A, @R0
+    ADDC A, @R1
+    MOV @R2, A
+
+    INC R0
+    INC R1
+    INC R2
+
+    DJNZ R3, BACK
+
+MOV A, #00H
+ADDC A, #00H
+MOV @R2, A
+
+STOP:
+SJMP STOP
+
+END
